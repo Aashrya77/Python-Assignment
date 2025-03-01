@@ -1,6 +1,7 @@
-customer,cust123,Chef
 Aashrya,123,admin
-bishal,123,Manager
-
-Hari,123,Chef
+Beeshal,1234,Manager
+Hari,123,Manager
 Kaushal,321,Manager
+Mukesh,123,Chef
+Ram,123,Customer
+Shyam,123,Customer

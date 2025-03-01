@@ -1,4 +1,5 @@
 from admin_functions import adminMenu
+from manager_funtions import manager_menu
 def loginUser ():
     MaxAttempts = 3
     while MaxAttempts > 0:
@@ -13,6 +14,8 @@ def loginUser ():
             users = file.readlines()
 
             for user in users:
+                if not user.strip():
+                    continue
                 stored_username, stored_password, role = user.strip().split(",")
 
                 if username.lower() == stored_username.lower():
@@ -40,7 +43,7 @@ def redirectUser (role):
     if role == "admin":
         adminMenu()
     elif role == "customer":
-        print("Redirect to customer page")
+        manager_menu()
     elif role == "manager":
         print("Redirect to manager page") 
     elif role == "chef":

@@ -49,9 +49,6 @@ def manageStaff ():
         else:
             print("Invalid choice. Please try again")
 
-
-
-
 def viewSalesReport ():
     print("\n==== View Sales Report ====")
 
@@ -115,7 +112,75 @@ def viewSalesReport ():
 def viewFeedback ():
     print("\n==== View Feedback ====")
 
+    try:
+        with open("Files/feedback.txt", "r") as file:
+            feedbacks = file.readlines()
+
+            if not feedbacks:
+                print("No feedback found")
+                return
+            print("1: View by chef\n2: View feedback by date\n3: View all feedbacks")
+            choice = input("Enter choice: ").strip()
+
+            if choice == "1":
+                chef_name = input("Enter chef's name: ").strip().capitalize()
+                feedbacks = [feedback for feedback in feedbacks if chef_name in feedback]
+            elif choice == "2":
+                try:
+                    date = input("Enter date (YYYY-MM-DD): ").strip()
+                    feedbacks = [feedback for feedback in feedbacks if date in feedback]
+                except ValueError:
+                    print("Invalid date format")
+            if feedbacks:
+                print("\nDate | Chef | Feedback")
+                print("-----------------------------")
+                for feedback in feedbacks:
+                    print(feedback.strip())
+            else:
+                print("No feedback found")
+    except FileNotFoundError:
+        print("No feedback found")
+
 def updateProfile ():
     print("\n==== Update Profile ====")
+    current_username = input("Enter current username: ").strip()
+    current_password = input("Enter current password: ").strip()
+    user_found = False
+    try:
+        with open("Files/users.txt", "r") as file:
+            users = file.readlines()
+            
+        for i, user in enumerate(users):
+            username, password, role = user.strip().split(",")
+            if username == current_username and password == current_password:
+                user_found = True
+                print("What would you like to update?")
+                print("1. Username")
+                print("2. Password")
+                print("3. Both")
+                choice = input("Enter choice (1/2/3): ").strip()
+                
+                new_username, new_password = username, password
+                if(choice == "1"):
+                    new_username = input("Enter new username: ").strip()
+                elif(choice == "2"):
+                    new_password = input("Enter new password: ").strip()
+                elif(choice == "3"):
+                    new_username = input("Enter new username: ").strip()
+                    new_password = input("Enter new password: ").strip()
+                else:
+                    print("Invalid choice. Update canceled")
+                    return
+                users[i] = f"{new_username},{new_password},{role}\n"
+                break
+        if user_found:
+            with open("Files/users.txt", "w") as file:
+                file.writelines(users)
+            print("Profile updated successfully")
+        else:    
+            print("Invalid username or password. Update failed")
+    except FileNotFoundError:
+        print("No user found")
+
 
 

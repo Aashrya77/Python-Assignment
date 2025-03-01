@@ -47,7 +47,11 @@ def updateStaff ():
         with open('Files/users.txt', 'r') as file:
             staff = file.readlines()
         for i, staff_member in enumerate(staff):
-            stored_username, password, role = staff_member.strip().split(",")
+            data= staff_member.strip().split(",")
+
+            if len(data) != 3:
+                continue
+            stored_username, password, role = data
             if username == stored_username:
                 user_found = True
                 new_role = input(f"Enter new role for {username} (Manager, Chef): ").strip()
