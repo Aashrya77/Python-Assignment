@@ -1,5 +1,5 @@
-from admin_functions import adminMenu
-from manager_funtions import manager_menu
+from admin_manager_functions.admin_functions import adminMenu
+from admin_manager_functions.manager_funtions import manager_menu
 def loginUser ():
     MaxAttempts = 3
     while MaxAttempts > 0:
