@@ -2,6 +2,6 @@ Aashrya7,123,admin
 Beeshal,1234,Manager
 Hari,123,Manager
 Kaushal,321,Manager
-Mukesh,123,Chef
-Ram,123,Customer
-Shyam,123,Customer
+Mukesh,1234,Chef
+ramayan,123,Customer
+ShyamJi,123,Customer
