@@ -133,40 +133,19 @@ def check_order():
                     print(f"- {name} (${price})")
                 return
     print("Order not found")
-def get_customer_name():
-    """Retrieve the customer's name from the profile file"""
-    if not os.path.exists(profile_file):
-        return "Unknown"
-    
-    with open(profile_file, 'r') as file:
-        data = file.readline().strip().split(',')
-        if len(data) >= 1:
-            return data[0]  # First value is the Name
-    return "Unknown"
 
-def get_chef_name():
-    """Retrieve the chef's name from the chef profile file"""
-    if not os.path.exists(chef_profile_file):
-        return "Unknown"
-    
-    with open(chef_profile_file, 'r') as file:
-        data = file.readline().strip().split(',')
-        if len(data) >= 1:
-            return data[0]  # First value is the Name
-    return "Unknown"
 
 def leave_feedback():
     """Save customer feedback with auto-filled customer and chef names"""
-    customer_name = get_customer_name()
-    chef_name = get_chef_name()
+    customer_name = input("Enter your name: ")
+    chef_name = input("Enter the name of chef you want to give feedback to: ")
     feedback_text = input("How was your experience? (max 200 characters)\n")
-
+    chef_found = False
     if len(feedback_text) > 200:
         print("Please keep feedback under 200 characters")
         return
-    
     current_date = datetime.today().strftime('%Y-%m-%d')
-    feedback_entry = f"{current_date},{customer_name},{chef_name},{feedback_text}\n"
+    feedback_entry = f"{current_date},{customer_name},Chef {chef_name},{feedback_text}\n"
 
     with open(feedback_file, 'a') as file:
         file.write(feedback_entry)

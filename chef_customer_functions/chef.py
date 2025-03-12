@@ -69,7 +69,7 @@ def manage_supplies():
         with open(supplies_file, 'r') as file:
             supplies = [line.strip() for line in file]
     
-    print("\nKitchen Supplies:")
+    print("\nKitchen Ingredients:")
     print("1. Add New Item")
     print("2. Edit Item")
     print("3. Remove Item")
