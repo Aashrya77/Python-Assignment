@@ -2,8 +2,8 @@ import os
 from datetime import datetime
 
 # Data files
-menu_file = 'menu.txt'            # Food items with prices
-orders_file = 'orders.txt'        # Customer orders
+menu_file = 'Files/menu.txt'            # Food items with prices
+orders_file = 'Files/orders.txt'        # Customer orders
 feedback_file = 'Files/feedback.txt'    # Customer feedback
 profile_file = 'customer_profiles.txt'
 chef_profile_file = 'chef_profile.txt'  # Customer profiles
@@ -29,7 +29,8 @@ def show_menu():
     print("\nToday's Menu:")
     menu = get_menu_items()
     for num, item in enumerate(menu, 1):
-        print(f"{num}. {item[0]} - ${item[1]} ({item[2]})")
+        category, name, price = item[0], item[1], item[2].strip()
+        print(f"{num}. {name} - ${price} ({category})")
 
 def place_order():
     """Handle food ordering process"""
@@ -93,7 +94,7 @@ def place_order():
                 print("Please add items first")
                 continue
             
-            total = sum(float(item[1]) for item in current_order)
+            total = sum(float(item[2]) for item in current_order)
             print(f"Total: ${total:.2f}")
             confirm = input("Confirm purchase (yes/no)? ").lower()
             
@@ -116,7 +117,7 @@ def save_order(items):
     """Save order to file"""
     with open(orders_file, 'a') as file:
         order_id = str(len(open(orders_file).readlines()) + 1)
-        food_items = ';'.join([f"{item[0]}${item[1]}" for item in items])
+        food_items = ';'.join([f"{item[1]}${item[2]}" for item in items])
         file.write(f"{order_id},{food_items},In Progress\n")
 
 def check_order():
@@ -291,6 +292,3 @@ def customer_program():
             break
         else:
             print("Invalid choice. Please try again.")
-
-if __name__ == "__main__":
-    customer_program()

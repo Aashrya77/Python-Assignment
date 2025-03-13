@@ -1,7 +1,7 @@
 import os
 
 # File names for storing data
-transactions_file = 'transactions.txt'  # Keeps track of orders
+transactions_file = 'Files/orders.txt'  # Keeps track of orders
 supplies_file = 'Files/ingredients.txt'          # List of kitchen items
 profile_file = 'chef_profile.txt'       # Chef profile
 
@@ -245,5 +245,3 @@ def main_program():
         else:
             print("Invalid choice. Please try again.")
 
-if __name__ == "__main__":
-    main_program()

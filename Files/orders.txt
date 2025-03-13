@@ -1,0 +1,2 @@
+1,Rice$120,Completed
+2,coke$50,In Progress
