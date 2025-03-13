@@ -1,5 +1,7 @@
 from admin_manager_functions.admin_functions import adminMenu
 from admin_manager_functions.manager_funtions import manager_menu
+from chef_customer_functions.chef import show_main_menu
+from chef_customer_functions.customer import customer_program
 def loginUser ():
     MaxAttempts = 3
     while MaxAttempts > 0:
@@ -43,9 +45,8 @@ def redirectUser (role):
     if role == "admin":
         adminMenu()
     elif role == "customer":
-        manager_menu()
+        customer_program()
     elif role == "manager":
-        print("Redirect to manager page") 
+        manager_menu()
     elif role == "chef":
-        print("Redirect to chef page")
-
+       show_main_menu()

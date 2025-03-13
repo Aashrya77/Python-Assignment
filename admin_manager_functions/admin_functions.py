@@ -1,4 +1,4 @@
-from manage_staff import addStaff, updateStaff, removeStaff, viewAllStaff
+from admin_manager_functions.manage_staff import addStaff, updateStaff, removeStaff, viewAllStaff
 
 def adminMenu ():
    while True:

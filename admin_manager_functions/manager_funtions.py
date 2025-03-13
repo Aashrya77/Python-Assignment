@@ -1,5 +1,5 @@
-from manage_customer import addCustomer, editCustomer, deleteCustomer
-from manage_menu import addMenuItem, editMenuItem, deleteMenuItem
+from admin_manager_functions.manage_customer import addCustomer, editCustomer, deleteCustomer
+from admin_manager_functions.manage_menu import addMenuItem, editMenuItem, deleteMenuItem
 
 def manager_menu():
     print("\n==== Manager Menu ====")
