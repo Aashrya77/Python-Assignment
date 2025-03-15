@@ -2,27 +2,30 @@ from admin_manager_functions.manage_customer import addCustomer, editCustomer, d
 from admin_manager_functions.manage_menu import addMenuItem, editMenuItem, deleteMenuItem
 
 def manager_menu():
-    print("\n==== Manager Menu ====")
-    print("1. Manage Customer (Add, Edit, Delete)")
-    print("2. Manage Menu categories and pricing (Add, Edit, Delete)")
-    print("3. View ingredients list requested by chef")
-    print("4. Update own profile")
-    print("5. Logout")
+    while True: 
+        print("\n==== Manager Menu ====")
+        print("1. Manage Customer (Add, Edit, Delete)")
+        print("2. Manage Menu categories and pricing (Add, Edit, Delete)")
+        print("3. View ingredients list requested by chef")
+        print("4. Update own profile")
+        print("5. Logout")
+        
+        choice = input("Enter choice: ").strip()
+        if choice == "1":
+            manageCustomer()
+        elif choice == "2":
+            manageMenu()
+        elif choice == "3":
+            viewIngredients()
+        elif choice == "4":
+            updateProfile()
+        elif choice == "5":
+            print("Logging out...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+            manager_menu()
     
-    choice = input("Enter choice: ").strip()
-    if choice == "1":
-        manageCustomer()
-    elif choice == "2":
-        manageMenu()
-    elif choice == "3":
-        print("View ingredients list requested by chef")
-    elif choice == "4":
-        updateProfile()
-    elif choice == "5":
-        print("Logging out...")
-    else:
-        print("Invalid choice. Please try again.")
-        manager_menu()
 
 def manageCustomer():
     while True:

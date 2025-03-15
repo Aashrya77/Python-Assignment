@@ -1,7 +1,8 @@
-Aashrya7,123,admin
-Beeshal,1234,Manager
-Hari,123,Manager
+Aashrya,123,admin
+HariJi,123,Manager
 Kaushal,321,Manager
-Mukesh,1234,Chef
-ramayan,123,Customer
+Mukesh,123,Chef
 ShyamJi,123,Customer
+Bishal,123,Chef
+
+Goru,123,Chef

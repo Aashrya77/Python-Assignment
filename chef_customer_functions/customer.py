@@ -118,7 +118,9 @@ def save_order(items):
     with open(orders_file, 'a') as file:
         order_id = str(len(open(orders_file).readlines()) + 1)
         food_items = ';'.join([f"{item[1]}${item[2]}" for item in items])
-        file.write(f"{order_id},{food_items},In Progress\n")
+        order_date = datetime.now().strftime("%Y-%m-%d")
+        file.write(f"{order_id},{order_date},{food_items},In Progress\n")
+        print("Order saved")
 
 def check_order():
     """Check status of an order"""
@@ -127,9 +129,9 @@ def check_order():
         for line in file:
             parts = line.strip().split(',')
             if parts[0] == order_id:
-                print(f"\nOrder Status: {parts[2]}")
+                print(f"\nOrder Status: {parts[3]}")
                 print("Items Ordered:")
-                for item in parts[1].split(';'):
+                for item in parts[2].split(';'):
                     name, price = item.split('$')
                     print(f"- {name} (${price})")
                 return

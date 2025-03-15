@@ -6,7 +6,7 @@ def addMenuItem():
     
     try:
         with open("Files/menu.txt", "a") as file:
-            file.write(f"{category},{item},{price}\n")
+            file.write(f"\n{category},{item},{price}")
         print("Item added successfully")
     except FileNotFoundError:
         print("File not found")

@@ -52,17 +52,16 @@ def manageStaff ():
 def viewSalesReport ():
     print("\n==== View Sales Report ====")
 
-    filter_option = input("View report by:\n1. Month\n2. Chef\n3. Overall\n. Choose(1/2/3): ").strip().lower()
+    filter_option = input("View report by:\n1. Month\n2. Overall\n. Choose(1/2): ").strip().lower()
 
     month_filter = None
-    chef_filter = None
+    
 
     if filter_option == '1':
         month_filter = input("Enter month (MM, e.g., 02 for February): ").strip()
-    elif filter_option == '2':
-        chef_filter = input("Enter chef's name: ").strip().capitalize()
+    
     try:
-        with open("Files/sales.txt", "r") as file:
+        with open("Files/orders.txt", "r") as file:
             sales = file.readlines()
 
             if not sales:
@@ -76,28 +75,35 @@ def viewSalesReport ():
             for sale in sales:
                 if "OrderId" in sale: 
                     continue
-                order_id, item, quantity, price, total_price, date, chef = sale.strip().split(",")
-                quantity, price, total_price = int(quantity), float(price), float(total_price)
+                order_id,date, items, status = sale.strip().split(",")
+                if status.strip().lower() != "completed":
+                    continue
+
                 order_month = date.split("-")[1]
 
                 if month_filter and month_filter != order_month:
                     continue
-                if chef_filter and chef_filter != chef:
-                    continue
 
                 total_orders += 1
-                total_revenue += total_price
 
-                if item not in item_sales:
-                    item_sales[item] = {"quantity": quantity, "revenue": total_price}
-                else:
-                    item_sales[item]["quantity"] += quantity
-                    item_sales[item]["revenue"] += total_price
+                for item_entry  in items.split(";"):
+                    item_name, price = item_entry.split("$", 1)
+                    price = float(price)
+
+                    total_revenue = price
+                
+
+                if item_name not in item_sales:
+                    item_sales[item_name] = {"quantity": 1, "revenue": price}
+                else: 
+                    item_sales[item_name]["quantity"] += 1
+                    item_sales[item_name]["revenue"] += price
+
                 
             print(f"\nTotal Orders: {total_orders}")
             print(f"Total Revenue: ${total_revenue:.2f}")
 
-            if not total_orders:
+            if total_orders == 0:
                 print("No sales record found")
                 return
             

@@ -34,7 +34,7 @@ def show_orders():
         print("No orders found.")
         return
     for order in all_orders:
-        print(f"Order {order[0]}: {order[1]} - Status: {order[2]}")
+        print(f"Order {order[0]}: {order[2]} - Status: {order[3]}")
 
 def update_order():
     """Change an order's status"""
@@ -57,7 +57,7 @@ def update_order():
         print("Invalid status.")
         return
     
-    found_order[2] = new_status
+    found_order[3] = new_status
     save_orders(orders)
     print(f"Order {order_id} updated to {new_status}")
 
