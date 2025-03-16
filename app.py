@@ -1,8 +1,8 @@
 from authentication import loginUser
 
-print("================================================")
-print("====== WELCOME TO RESTURANT MANAGEMENT APP =====")
-print("================================================")
+with open("Files/welcome.txt", 'r', encoding='utf-8') as file:
+    print(file.read())
+
 
 
 loginUser()

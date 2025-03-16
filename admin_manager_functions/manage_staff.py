@@ -34,10 +34,20 @@ def addStaff ():
 
                 print("Username already exists")
                 return
+    
+    email = input("Enter email: ").strip()
+    phone = input("Enter phone: ").strip()
+    address = input("Enter address: ").strip()
    
     with open("Files/users.txt", "a") as file:
         file.write(f"\n{username},{password},{role}")
     print("Staff added successfully")
+
+    profile_file = "Files/chef_profile.txt" if role == "Chef" else "Files/managers.txt"
+    with open(profile_file, 'a') as file:
+        file.write(f"\n{username},{email},{phone},{address}")
+
+    print(f"{role} added successfully!")
 
 def updateStaff ():
     print("\n==== Update Staff ====")
