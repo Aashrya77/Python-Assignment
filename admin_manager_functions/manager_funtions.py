@@ -86,54 +86,126 @@ def viewIngredients():
     except FileNotFoundError:
         print("No ingredients requested by chef.")
 
-def updateProfile():
-    print("\n==== Update Manager Profile ====")
-    username = input("Enter username: ").strip()
-    password = input("Enter password: ").strip()
-
+def updateProfile ():
+    print("\n==== Update Profile ====")
+    current_username = input("Enter current username: ").strip()
+    current_password = input("Enter current password: ").strip()
+    user_found = False
     try:
         with open("Files/users.txt", "r") as file:
-            managers = file.readlines()
-
-        updated_managers = []
-        manager_found = False
-
-        for manager in managers:
-            data = manager.strip().split(",")
+            users = file.readlines()
+            
+        for i, user in enumerate(users):
+            data = user.strip().split(',')
             if len(data) != 3:
                 continue
-            stored_username, stored_password, role = data
-
-            if stored_username == username and role.lower() == "manager" and stored_password == password:
-                manager_found = True
-                print("1. Update Username")
-                print("2. Update Password")
-                choice = input("Enter choice: (1 or 2): ").strip()
+            username, password, role = data
+            if username.strip().lower() == current_username.strip().lower() and password.strip() == current_password:
+                user_found = True
+                print("What would you like to update?")
+                print("1. Username or passowrd")
+                print("2. Phone number, email, or address")
+                
+                choice = input("Enter choice (1/2): ").strip()
 
                 if choice == "1":
-                    new_username = input("Enter new username: ").strip()
-                    updated_manager = f"{new_username},{password},{role}\n"
-                    updated_managers.append(updated_manager)
-                    print("Username updated successfully.")
-                elif choice == "2":
-                    new_password = input("Enter new password: ").strip()
-                    updated_manager = f"{stored_username},{new_password},{role}\n"
-                    updated_managers.append(updated_manager)
-                    print("Password updated successfully.")
-                else:
-                    print("Invalid choice. Please try again.")
-                    return
-                
-            else:
-                updated_managers.append(manager)
-        
-        if not manager_found:
-            print("Manager not found.")
-            return
-        
-        with open("Files/users.txt", "w") as file:
-            file.writelines(updated_managers)
+                    print("1. Update Username")
+                    print("2. Update Password")
+                    print("3. Update both")
+                    choice = input("Enter choice (1/2/3): ").strip()
 
+                    new_username, new_password = username, password
+                    if(choice == "1"):
+                        new_username = input("Enter new username: ").strip()
+                    elif(choice == "2"):
+                        new_password = input("Enter new password: ").strip()
+                    elif(choice == "3"):
+                        new_username = input("Enter new username: ").strip()
+                        new_password = input("Enter new password: ").strip()
+                    else:
+                        print("Invalid choice. Update canceled")
+                        return
+                    users[i] = f"{new_username},{new_password},{role}\n"
+
+                    if role == "Chef":
+                        profile_found = False
+
+                    
+
+                        try: 
+                            with open("Files/managers.txt", "r") as file:
+                                profiles = file.readlines()
+
+                            for j, line in enumerate(profiles):
+                                data = line.strip().split(",")
+                                if data[0].lower() == current_username.lower():
+                                    profile_found = True
+                                    data[0] = new_username
+                                    profiles[j] = ",".join(data) + '\n'
+                                    break
+                                
+                            if profile_found:
+                                with open("Files/managers.txt", "w") as file:
+                                    file.writelines(profiles)
+                        except FileNotFoundError:
+                            print("No profile found")
+                
+                elif choice == "2":
+                    profile_found = False
+                    try:
+                        with open("Files/managers.txt", "r") as file:
+                            profiles = file.readlines()
+                            for j, line in enumerate(profiles):
+                                data = line.strip().split(",")
+                                if data[0].lower() == current_username.lower():
+                                    profile_found = True
+                                    print("1. Update Email")
+                                    print("2. Update Phone number")
+                                    print("3. Update Address")
+                                    print("4. Update all")
+                                    choice = input("Enter choice (1/2/3/4): ").strip()
+                                    if choice == "1":
+                                        new_email = input("Enter new email: ").strip()
+                                        data[1] = new_email
+                                    elif choice == "2":
+                                        new_phone = input("Enter new Phone number: ").strip()
+                                        data[2] = new_phone
+                                    elif choice == "3":
+                                        new_address = input("Enter new address: ").strip()
+                                        data[3] = new_address
+                                    elif choice == "4":
+                                        new_email = input("Enter new email: ").strip()
+                                        new_phone = input("Enter new phone number: ").strip()
+                                        
+                                        new_address = input("Enter new address: ").strip()
+                                        data[1] = new_email
+                                        data[2] = new_phone
+                                        data[3] = new_address
+                                    else:
+                                        print("Invalid choice. Update canceled")
+                                        return
+                                    profiles[j] = ",".join(data) + '\n'
+                                    break
+                        if profile_found:
+                            with open("Files/managers.txt", "w") as file:
+                                file.writelines(profiles)
+                        else:
+                            print("Profile not found")
+                    except FileNotFoundError:
+                        print("Manager profile not found.")
+        
+
+           
+                    
+                
+               
+        if user_found:
+            with open("Files/users.txt", "w") as file:
+                file.writelines(users)
+            print("Profile updated successfully")
+            
+        else:    
+            print("Invalid username or password. Update failed")
     except FileNotFoundError:
-        print("No managers found.")
+        print("No user found")
 
