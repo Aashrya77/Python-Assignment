@@ -1,10 +1,12 @@
+#Admin funtions
+
 def viewAllStaff():
     print("\n==== View All Staff ====")
     try:
         with open("Files/users.txt", "r") as file:
             staff = file.readlines()
             if not staff:
-                print("No record found")
+                print("No record found") 
             else:
                 print("Name | Role")
                 print("----------------------------")
