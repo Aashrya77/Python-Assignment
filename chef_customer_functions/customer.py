@@ -17,6 +17,7 @@ def show_customer_menu():
     print("4. Update My Profile")
     print("5. Exit")
 
+#customer functions
 def get_menu_items():
     """Get list of food items"""
     if not os.path.exists(menu_file):
