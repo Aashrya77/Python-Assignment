@@ -2,6 +2,7 @@ from admin_manager_functions.admin_functions import adminMenu
 from admin_manager_functions.manager_funtions import manager_menu
 from chef_customer_functions.chef import main_program
 from chef_customer_functions.customer import customer_program
+#User Authentication
 def loginUser ():
     MaxAttempts = 3
     while MaxAttempts > 0:
