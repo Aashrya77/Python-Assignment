@@ -220,7 +220,7 @@ def update_profile ():
                 elif choice == "2":
                     profile_found = False
                     try:
-                        with open("Files/customer_profiles.txt", "r") as file:
+                        with open("Files/customers.txt", "r") as file:
                             profiles = file.readlines()
                             for j, line in enumerate(profiles):
                                 data = line.strip().split(",")
@@ -254,7 +254,7 @@ def update_profile ():
                                     profiles[j] = ",".join(data) + '\n'
                                     break
                         if profile_found:
-                            with open("Files/customer_profiles.txt", "w") as file:
+                            with open("Files/customers.txt", "w") as file:
                                 file.writelines(profiles)
                         else:
                             print("Profile not found")

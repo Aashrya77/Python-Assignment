@@ -54,7 +54,7 @@ def manageMenu():
         print("1. Add New Menu Item")
         print("2. Update Menu Item")
         print("3. Remove Menu Item")
-        print("4. Back to Admin Menu")
+        print("4. Back to Manager Menu")
 
         choice = input("Enter choice: ").strip()
 

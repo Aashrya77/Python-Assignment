@@ -3,3 +3,5 @@ Lunch,chowmin,130
 Lunch,Momo, 160
 Drinks,coke,50
 Lunch,Buff chowmin,200
+
+Dinner,Curd,10
