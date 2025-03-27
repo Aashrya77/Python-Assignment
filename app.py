@@ -1,3 +1,4 @@
+#Main file
 from authentication import loginUser
 
 with open("Files/welcome.txt", 'r', encoding='utf-8') as file:
@@ -5,4 +6,4 @@ with open("Files/welcome.txt", 'r', encoding='utf-8') as file:
 
 loginUser()
 
-
+ 
