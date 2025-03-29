@@ -49,6 +49,8 @@ def manageStaff ():
         else:
             print("Invalid choice. Please try again")
 
+#Admin functions
+
 def viewSalesReport ():
     print("\n==== View Sales Report ====")
 
