@@ -25,7 +25,7 @@ def manager_menu():
         else:
             print("Invalid choice. Please try again.")
             manager_menu()
-    
+#Manager Functions
 
 def manageCustomer():
     while True:
