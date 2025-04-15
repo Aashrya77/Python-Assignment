@@ -59,6 +59,8 @@ def editCustomer():
     except FileNotFoundError:
         print("No customers found")
 
+#delete customer
+
 def deleteCustomer():
     print("\n==== Delete Customer ====")
     # Delete customer code here
