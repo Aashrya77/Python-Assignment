@@ -28,6 +28,7 @@ def addCustomer():
     
     print("Customer added successfully")
         
+#Edit customer
 
 def editCustomer():
     print("\n==== Edit Customer ====")
