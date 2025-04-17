@@ -1,4 +1,4 @@
-
+#Add customer
 def addCustomer():
     print("Add Customer")
     # Add customer code here
