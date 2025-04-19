@@ -1,3 +1,4 @@
+#addMenuItem
 def addMenuItem():
     print("\n==== Adding a menu item =====")
     category = input("Enter category: ").strip()
