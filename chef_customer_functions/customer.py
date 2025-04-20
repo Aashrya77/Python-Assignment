@@ -24,7 +24,7 @@ def get_menu_items():
         return []
     with open(menu_file, 'r') as file:
         return [line.strip().split(',') for line in file]
-
+#show menu
 def show_menu():
     """Display available food items"""
     print("\nToday's Menu:")

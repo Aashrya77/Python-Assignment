@@ -13,7 +13,6 @@ def addMenuItem():
         print("File not found")
 
 #edit menu item
-
 def editMenuItem():
     print("\n==== Editing a menu item =====")
     item_to_edit = input("Enter item to edit: ").strip()
